@@ -1,0 +1,245 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "Inicio | DentalCenter";
+}
+
+<style>
+    body {
+        background-image: url('/images/dentistas.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    .hero-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        background-color: rgba(15, 12, 41, 0.7);
+        text-align: center;
+        animation: fadeIn 1s ease-out;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        animation: slideUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-subtitle {
+        color: #ffff;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+        animation: slideUp 0.8s ease-out 0.4s both;
+    }
+
+    .btn-container {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        animation: slideUp 0.8s ease-out 0.6s both;
+    }
+
+    .btn-primary {
+        background: #2d9cdb;
+        color: white;
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: white;
+        padding: 0.75rem 2rem;
+        border: 2px solid #2d9cdb;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn-primary:hover {
+        background: #2a8bc5;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-outline:hover {
+        background: rgba(45, 156, 219, 0.1);
+        transform: translateY(-2px);
+        border-color: #2a8bc5;
+        color: white;
+    }
+
+    .social-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        animation: slideUp 0.8s ease-out 0.8s both;
+    }
+
+    .social-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    .google-btn {
+        background: #DB4437;
+        border: 2px solid #DB4437;
+    }
+
+        .google-btn:hover {
+            background: transparent;
+            color: #DB4437;
+        }
+
+    .facebook-btn {
+        background: #1877F2;
+        border: 2px solid #1877F2;
+    }
+
+        .facebook-btn:hover {
+            background: transparent;
+            color: #1877F2;
+        }
+
+    .twitter-btn {
+        background: #0000;
+        border: 2px solid #0000;
+    }
+
+        .twitter-btn:hover {
+            background: transparent;
+            color: #1877F2;
+        }
+
+    @@keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .white {
+        color: #ffff;
+        display: inline-block;
+    }
+
+    .blue {
+        color: #2d9cdb;
+    }
+
+    /* Efecto de onda sutil en el fondo */
+    .hero-container::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 20vh;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%232d9cdb" opacity=".05"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%232d9cdb" opacity=".1"/></svg>') no-repeat;
+        background-size: cover;
+        opacity: 0.6;
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
+
+        .btn-container {
+            flex-direction: column;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-primary, .btn-outline {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="hero-container">
+    <h1 class="hero-title">
+        <span class="white">Bienvenido a </span>
+        <span class="blue">Dental<span class="white">Center</span></span>
+    </h1>
+    <p class="hero-subtitle">Tu sonrisa saludable es nuestra prioridad</p>
+
+    <div class="btn-container">
+        <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </a>
+        <a asp-controller="Auth" asp-action="Registro" class="btn-outline">
+            <i class="fas fa-user-plus"></i> Registrarse
+        </a>
+    </div>
+
+    <div class="social-buttons">
+        <a href="#" class="social-btn google-btn" title="Continuar con Google">
+            <i class="fab fa-google"></i>
+        </a>
+        <a href="#" class="social-btn twitter-btn" title="Continuar con Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-btn facebook-btn" title="Continuar con Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        
+    </div>
+</div>

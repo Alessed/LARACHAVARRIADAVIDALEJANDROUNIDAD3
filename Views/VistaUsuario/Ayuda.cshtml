@@ -1,0 +1,214 @@
+﻿@{
+    ViewData["Title"] = "Ayuda | Dental Center";
+}
+
+<div class="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <!-- Encabezado -->
+    <div class="text-center mb-12">
+        <h1 class="text-3xl font-bold text-blue-600 mb-4">Centro de Ayuda</h1>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+            Encuentra respuestas a las preguntas más frecuentes o contacta a nuestro equipo de soporte.
+        </p>
+
+        <!-- Barra de búsqueda -->
+        <div class="mt-8 max-w-2xl mx-auto">
+            <div class="relative">
+                <input type="text" placeholder="Buscar en la ayuda..."
+                       class="w-full px-5 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400 text-gray-700">
+                <button class="absolute right-3 top-3 text-gray-500 hover:text-blue-600">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="grid md:grid-cols-3 gap-8">
+        <!-- Sección de categorías -->
+        <div class="md:col-span-1">
+            <div class="bg-white rounded-xl p-6 shadow-md sticky top-6">
+                <h2 class="text-xl font-semibold text-blue-600 mb-6">Categorías</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="#cuenta" class="flex items-center text-gray-700 hover:text-blue-600 group">
+                            <i class="fas fa-user-circle mr-3 text-blue-500 group-hover:text-blue-600"></i>
+                            <span>Cuenta y perfil</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#citas" class="flex items-center text-gray-700 hover:text-blue-600 group">
+                            <i class="fas fa-calendar-alt mr-3 text-blue-500 group-hover:text-blue-600"></i>
+                            <span>Citas y agendamiento</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tratamientos" class="flex items-center text-gray-700 hover:text-blue-600 group">
+                            <i class="fas fa-tooth mr-3 text-blue-500 group-hover:text-blue-600"></i>
+                            <span>Tratamientos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#emergencias" class="flex items-center text-gray-700 hover:text-blue-600 group">
+                            <i class="fas fa-exclamation-triangle mr-3 text-blue-500 group-hover:text-blue-600"></i>
+                            <span>Emergencias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#pagos" class="flex items-center text-gray-700 hover:text-blue-600 group">
+                            <i class="fas fa-credit-card mr-3 text-blue-500 group-hover:text-blue-600"></i>
+                            <span>Pagos y facturación</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <h3 class="text-lg font-medium text-blue-600 mb-4">¿No encuentras lo que buscas?</h3>
+                    <a href="/VistaUsuario/Contacto" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors duration-200">
+                        <i class="fas fa-headset mr-2"></i>
+                        Contactar a soporte
+                    </a>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p class="font-medium">Urgencias:</p>
+                        <p class="text-blue-600"><i class="fas fa-phone-alt mr-2"></i> (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de preguntas frecuentes -->
+        <div class="md:col-span-2">
+            <!-- Sección Cuenta -->
+            <div id="cuenta" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                    <i class="fas fa-user-circle mr-3"></i>
+                    Cuenta y perfil
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Cómo cambio mi contraseña?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Para cambiar tu contraseña, ve a Configuración de cuenta > Seguridad. Ingresa tu contraseña actual y luego la nueva contraseña dos veces para confirmar.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Cómo actualizo mi información personal?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Puedes editar tu información personal, dirección y datos de contacto en la sección "Mi perfil" de tu cuenta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Citas -->
+            <div id="citas" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                    <i class="fas fa-calendar-alt mr-3"></i>
+                    Citas y agendamiento
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Cómo reprogramo una cita?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Ve a "Mis citas", selecciona la cita que deseas cambiar y haz clic en "Reprogramar". Podrás elegir una nueva fecha y hora disponible.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Qué debo hacer si llego tarde a mi cita?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Llama a nuestra recepción al (555) 123-4567 para informar. Llegadas con más de 15 minutos de retraso podrían requerir reprogramación.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Tratamientos -->
+            <div id="tratamientos" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                    <i class="fas fa-tooth mr-3"></i>
+                    Tratamientos
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Qué debo hacer después de un tratamiento?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Las instrucciones post-tratamiento varían según el procedimiento. Tu dentista te proporcionará indicaciones específicas, que también estarán disponibles en tu historial digital.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Cómo sé qué tratamiento necesito?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Programa una consulta de evaluación con uno de nuestros especialistas, quienes realizarán un diagnóstico completo y te recomendarán el tratamiento adecuado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Emergencias -->
+            <div id="emergencias" class="mb-12">
+                <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-3"></i>
+                    Emergencias
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Qué se considera una emergencia dental?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Dolor intenso, sangrado que no cesa, trauma dental o hinchazón facial son considerados emergencias. Llama inmediatamente al (555) 123-4567.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Atienden emergencias fuera de horario?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Sí, contamos con servicio de emergencias 24/7. Llama al número de emergencias y serás atendido por nuestro dentista de guardia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Pagos -->
+            <div id="pagos">
+                <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center">
+                    <i class="fas fa-credit-card mr-3"></i>
+                    Pagos y facturación
+                </h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Qué métodos de pago aceptan?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Aceptamos efectivo, tarjetas de crédito/débito (Visa, MasterCard, Amex) y transferencias bancarias.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">¿Ofrecen planes de financiamiento?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Sí, para tratamientos extensos ofrecemos planes de pago a meses sin intereses. Consulta con nuestro personal administrativo para más detalles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para smooth scrolling -->
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>

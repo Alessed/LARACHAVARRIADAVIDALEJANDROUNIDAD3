@@ -1,0 +1,191 @@
+﻿@{
+    ViewData["Title"] = "Contacto | Dental Center";
+}
+
+<div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Encabezado -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-blue-600 mb-4">Contáctanos</h1>
+            <p class="max-w-3xl mx-auto text-gray-600">
+                Estamos aquí para responder tus preguntas y ayudarte con cualquier consulta sobre nuestros servicios dentales.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Formulario de contacto -->
+            <div class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6">Envía un mensaje</h2>
+
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 gap-6">
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo *</label>
+                            <input type="text" id="nombre" name="nombre" required
+                                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                   placeholder="Tu nombre">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico *</label>
+                                <input type="email" id="email" name="email" required
+                                       class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                       placeholder="tu@email.com">
+                            </div>
+                            <div>
+                                <label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono"
+                                       class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                       placeholder="Número de contacto">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="asunto" class="block text-sm font-medium text-gray-700 mb-1">Asunto *</label>
+                            <select id="asunto" name="asunto" required
+                                    class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="" disabled selected>Selecciona un asunto</option>
+                                <option value="consulta">Consulta general</option>
+                                <option value="cita">Solicitud de cita</option>
+                                <option value="emergencia">Emergencia dental</option>
+                                <option value="facturacion">Facturación y pagos</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-1">Mensaje *</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required
+                                      class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                      placeholder="Describe tu consulta o solicitud..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit"
+                                class="w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Información de contacto -->
+            <div class="space-y-8">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Información de contacto</h2>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-500">Dirección</h3>
+                                <p class="text-sm text-gray-700 mt-1">Av. Dental 123, Col. Salud Bucal</p>
+                                <p class="text-sm text-gray-700">Tercer piso, Consultorio 302</p>
+                                <p class="text-sm text-gray-700">Ciudad Dental, CP 45678</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-500">Teléfonos</h3>
+                                <p class="text-sm text-gray-700 mt-1">Consultas: (555) 123-4567</p>
+                                <p class="text-sm text-gray-700">Emergencias: (555) 987-6543</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-500">Correo electrónico</h3>
+                                <p class="text-sm text-gray-700 mt-1">contacto@dentalcenter.com</p>
+                                <p class="text-sm text-gray-700">citas@dentalcenter.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-500">Horario de atención</h3>
+                                <p class="text-sm text-gray-700 mt-1">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                                <p class="text-sm text-gray-700">Sábados: 9:00 AM - 1:00 PM</p>
+                                <p class="text-sm text-gray-700">Emergencias: 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="h-64 bg-blue-50 flex items-center justify-center">
+                        <!-- Aquí iría el iframe de Google Maps -->
+                        <div class="text-center p-4">
+                            <i class="fas fa-map-marked-alt text-4xl text-blue-600 mb-2"></i>
+                            <p class="text-gray-600">Ubicación en Google Maps</p>
+                            <a href="#" class="text-blue-600 text-sm hover:underline">Ver mapa completo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipo de soporte -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-blue-600 mb-8 text-center">Nuestro equipo de soporte</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <div class="h-20 w-20 mx-auto rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4">
+                        <i class="fas fa-user-md text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-800 mb-1">Dra. Ana López</h3>
+                    <p class="text-sm text-blue-600 mb-3">Coordinadora de Citas</p>
+                    <p class="text-sm text-gray-600">Encargada de agendar y coordinar tus visitas a la clínica.</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <div class="h-20 w-20 mx-auto rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4">
+                        <i class="fas fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-800 mb-1">Lic. Carlos Ramírez</h3>
+                    <p class="text-sm text-blue-600 mb-3">Servicio al Cliente</p>
+                    <p class="text-sm text-gray-600">Atenderá tus dudas sobre tratamientos y servicios.</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <div class="h-20 w-20 mx-auto rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4">
+                        <i class="fas fa-file-invoice-dollar text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-800 mb-1">Lic. Patricia Gómez</h3>
+                    <p class="text-sm text-blue-600 mb-3">Administración y Pagos</p>
+                    <p class="text-sm text-gray-600">Resolverá tus consultas sobre facturación y seguros.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA para emergencias -->
+        <div class="mt-16 bg-red-50 border border-red-100 rounded-xl p-8 text-center">
+            <div class="max-w-2xl mx-auto">
+                <div class="h-12 w-12 mx-auto bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-4">
+                    <i class="fas fa-exclamation-triangle text-xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-red-600 mb-2">¿Necesitas atención de emergencia?</h2>
+                <p class="text-gray-600 mb-4">Para emergencias dentales fuera de horario, llama inmediatamente a nuestro servicio 24/7.</p>
+                <a href="tel:5559876543" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium">
+                    <i class="fas fa-phone-alt mr-2"></i>
+                    Llamar a Emergencias: (555) 987-6543
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

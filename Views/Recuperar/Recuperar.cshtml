@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "Recuperar Contraseña | Dental Center";
+}
+
+<style>
+    .recovery-container {
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 2rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .recovery-card {
+        background: #ffffff;
+        border-radius: 6px;
+        padding: 2.5rem;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e0e7f5;
+    }
+
+    .recovery-title {
+        color: #1e3a8a;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.8rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .form-label {
+        display: block;
+        color: #374151;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #d1d5db;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+        background-color: #f9fafb;
+    }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+
+    .btn-submit {
+        background: #2563eb;
+        color: white;
+        width: 100%;
+        padding: 0.85rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition: background 0.15s ease;
+    }
+
+        .btn-submit:hover {
+            background: #1d4ed8;
+        }
+
+    .alert-message {
+        padding: 0.85rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .alert-success {
+        background: #f0f9ff;
+        color: #0369a1;
+        border: 1px solid #bae6fd;
+    }
+
+    .link-back {
+        display: block;
+        text-align: center;
+        margin-top: 1.8rem;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+        .link-back:hover {
+            text-decoration: underline;
+            color: #1e40af;
+        }
+
+    .dental-icon {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #1e3a8a;
+        font-size: 2.5rem;
+    }
+</style>
+
+<div class="recovery-container">
+    <div class="recovery-card">
+        <div class="dental-icon">
+            <i class="fas fa-tooth"></i> <!-- Asumiendo que tienes Font Awesome -->
+        </div>
+        <h1 class="recovery-title">Recuperar Contraseña</h1>
+
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert-message alert-success">@ViewBag.Mensaje</div>
+        }
+
+        <form asp-action="Recuperar" method="post">
+            <div class="form-group">
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" class="form-input" placeholder="Ingrese su correo electrónico" required />
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar Código de Recuperación</button>
+
+            <a href="/Auth/Login" class="link-back">← Volver al inicio de sesión</a>
+        </form>
+    </div>
+</div>

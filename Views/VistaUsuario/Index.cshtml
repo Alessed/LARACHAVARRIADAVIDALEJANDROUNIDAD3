@@ -1,0 +1,257 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Estilos generales */
+    .user-view {
+        padding: 2rem 1.5rem;
+        background-color: #f8fafc;
+        min-height: calc(100vh - 56px);
+    }
+
+    /* Título principal */
+    .welcome-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: #2b6cb0;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #e2e8f0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Contenedor de tarjetas */
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* Tarjetas principales */
+    .main-card {
+        padding: 1.8rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-top: 4px solid;
+    }
+
+    .appointments-card {
+        border-top-color: #3182ce;
+    }
+
+    .services-card {
+        border-top-color: #38a169;
+    }
+
+    /* Tarjetas de dentistas */
+    .dentist-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+        border: 1px solid #e2e8f0;
+    }
+
+        .dentist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    .dentist-image {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        background-color: #ebf4ff;
+    }
+
+    .dentist-info {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    /* Textos y títulos */
+    .card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #2d3748;
+    }
+
+    .card-text {
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        color: #4a5568;
+        font-size: 1rem;
+    }
+
+    .dentist-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #2d3748;
+    }
+
+    .dentist-specialty {
+        color: #3182ce;
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    /* Sección de dentistas */
+    .dentists-section {
+        margin-top: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #2d3748;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #3182ce;
+            border-radius: 3px;
+        }
+
+    /* Botones */
+    .card-btn {
+        display: inline-block;
+        padding: 0.5rem 1.25rem;
+        border-radius: 6px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        background: #3182ce;
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background: #2b6cb0;
+        }
+
+    .btn-secondary {
+        background: #e2e8f0;
+        color: #2d3748;
+    }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .user-view {
+            padding: 1.25rem;
+        }
+
+        .welcome-title {
+            font-size: 1.8rem;
+        }
+
+        .cards-container {
+            grid-template-columns: 1fr;
+        }
+
+        .main-card {
+            padding: 1.25rem;
+        }
+    }
+</style>
+
+<div class="user-view">
+    <h2 class="welcome-title">Bienvenido a Dental Center</h2>
+
+    <div class="cards-container">
+        <div class="main-card appointments-card">
+            <h3 class="card-title">Mis Citas</h3>
+            <p class="card-text">
+                Administra tus citas programadas, revisa tu historial dental y agenda nuevas consultas
+                con nuestros especialistas.
+            </p>
+            <a href="#" class="card-btn btn-primary">Ver mis citas</a>
+        </div>
+
+        <div class="main-card services-card">
+            <h3 class="card-title">Servicios Disponibles</h3>
+            <p class="card-text">
+                Conoce nuestros tratamientos dentales, desde limpiezas básicas hasta procedimientos
+                especializados de ortodoncia y estética dental.
+            </p>
+            <a href="#" class="card-btn btn-primary">Ver servicios</a>
+        </div>
+    </div>
+
+    <div class="dentists-section">
+        <h3 class="section-title">Nuestros Especialistas</h3>
+
+        <div class="cards-container">
+            <!-- Dentista 1 -->
+            <div class="dentist-card">
+                <div class="dentist-image" style="background-image: url('/images/dentist1.jpg');"></div>
+                <div class="dentist-info">
+                    <h4 class="dentist-name">Dra. María Rodríguez</h4>
+                    <p class="dentist-specialty">Ortodoncista</p>
+                    <p class="card-text">
+                        Especialista en ortodoncia y ortopedia maxilar con más de 10 años de experiencia.
+                        Certificada por la Asociación Dental Americana.
+                    </p>
+                    <a href="#" class="card-btn btn-secondary">Agendar cita</a>
+                </div>
+            </div>
+
+            <!-- Dentista 2 -->
+            <div class="dentist-card">
+                <div class="dentist-image" style="background-image: url('/images/dentist2.jpg');"></div>
+                <div class="dentist-info">
+                    <h4 class="dentist-name">Dr. Carlos Méndez</h4>
+                    <p class="dentist-specialty">Cirujano Dental</p>
+                    <p class="card-text">
+                        Experto en implantes dentales y cirugía oral. Miembro del Colegio de Cirujanos
+                        Dentales de México.
+                    </p>
+                    <a href="#" class="card-btn btn-secondary">Agendar cita</a>
+                </div>
+            </div>
+
+            <!-- Dentista 3 -->
+            <div class="dentist-card">
+                <div class="dentist-image" style="background-image: url('/images/dentist3.jpg');"></div>
+                <div class="dentist-info">
+                    <h4 class="dentist-name">Dra. Laura Sánchez</h4>
+                    <p class="dentist-specialty">Odontopediatra</p>
+                    <p class="card-text">
+                        Especialista en cuidado dental infantil con enfoque en tratamientos preventivos
+                        y manejo de ansiedad en niños.
+                    </p>
+                    <a href="#" class="card-btn btn-secondary">Agendar cita</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

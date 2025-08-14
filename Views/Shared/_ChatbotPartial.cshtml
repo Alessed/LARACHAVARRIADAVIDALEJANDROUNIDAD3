@@ -1,0 +1,203 @@
+﻿<div id="chatbot-container" class="fixed bottom-6 right-6 w-80 z-50">
+    <!-- Encabezado del chatbot -->
+    <div id="chatbot-header"
+         class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-3 rounded-t-lg cursor-pointer
+                flex justify-between items-center shadow-lg hover:shadow-xl transition-shadow duration-200">
+        <div class="flex items-center">
+            <i class="fas fa-robot mr-2"></i>
+            <span class="font-medium">Asistente Musical</span>
+        </div>
+        <span id="chatbot-toggle" class="transform transition-transform duration-200">▼</span>
+    </div>
+
+    <!-- Cuerpo del chatbot -->
+    <div id="chatbot-body"
+         class="hidden flex flex-col border border-gray-700 bg-gray-800 rounded-b-lg shadow-lg
+                overflow-hidden" style="height: 400px;">
+        <!-- Área de mensajes -->
+        <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto space-y-3">
+            <!-- Mensaje de bienvenida -->
+            <div class="flex justify-start">
+                <div class="bg-gray-700 rounded-lg p-3 max-w-xs md:max-w-md">
+                    <p class="text-sm text-gray-200">¡Hola! Soy el asistente de Mathematical Rhythm. ¿En qué puedo ayudarte hoy?</p>
+                </div>
+            </div>
+
+            <!-- Ejemplo de mensaje del usuario -->
+            <div class="flex justify-end hidden" id="user-message-template">
+                <div class="bg-purple-600 rounded-lg p-3 max-w-xs md:max-w-md">
+                    <p class="text-sm text-white">Mensaje de ejemplo</p>
+                </div>
+            </div>
+
+            <!-- Ejemplo de respuesta del bot -->
+            <div class="flex justify-start hidden" id="bot-message-template">
+                <div class="bg-gray-700 rounded-lg p-3 max-w-xs md:max-w-md">
+                    <p class="text-sm text-gray-200">Respuesta de ejemplo</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área de entrada -->
+        <div class="border-t border-gray-700 p-3 bg-gray-900">
+            <div class="flex">
+                <input type="text" id="user-input"
+                       class="flex-1 px-3 py-2 bg-gray-700 text-white text-sm rounded-l-lg
+                              focus:outline-none focus:ring-1 focus:ring-purple-500 placeholder-gray-400"
+                       placeholder="Escribe tu pregunta...">
+                <button id="send-btn"
+                        class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded-r-lg
+                               transition-colors duration-200 focus:outline-none focus:ring-1 focus:ring-purple-500">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <p class="text-xs text-gray-500 mt-2 text-center">Mathematical Rhythm Assistant v2.0</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función para alternar el estado del chatbot
+    function toggleChatbot() {
+        const chatbotBody = document.getElementById('chatbot-body');
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+
+        if (chatbotBody.classList.contains('hidden')) {
+            chatbotBody.classList.remove('hidden');
+            chatbotToggle.innerHTML = '▲';
+            chatbotToggle.classList.add('rotate-180');
+        } else {
+            chatbotBody.classList.add('hidden');
+            chatbotToggle.innerHTML = '▼';
+            chatbotToggle.classList.remove('rotate-180');
+        }
+    }
+
+    // Evento para el header del chatbot
+    document.getElementById('chatbot-header').addEventListener('click', function(e) {
+        // Evitar que el evento se propague si se hace clic en la flecha
+        if (e.target.id === 'chatbot-toggle' || e.target.parentElement.id === 'chatbot-toggle') {
+            toggleChatbot();
+        }
+    });
+
+    // Evento para el botón del navbar
+    document.getElementById('navbar-chatbot-trigger').addEventListener('click', function() {
+        const chatbotBody = document.getElementById('chatbot-body');
+
+        // Solo alternar si el chatbot está oculto
+        if (chatbotBody.classList.contains('hidden')) {
+            toggleChatbot();
+        }
+    });
+
+    // Evento para el botón del menú móvil
+    document.getElementById('mobile-chatbot-trigger')?.addEventListener('click', function() {
+        const chatbotBody = document.getElementById('chatbot-body');
+
+        // Solo alternar si el chatbot está oculto
+        if (chatbotBody.classList.contains('hidden')) {
+            toggleChatbot();
+        }
+    });
+
+    // Resto del código del chatbot (sendMessage, addMessage, etc.)
+    document.getElementById('send-btn').addEventListener('click', sendMessage);
+    document.getElementById('user-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+
+
+
+
+    // Enviar mensaje
+    document.getElementById('send-btn').addEventListener('click', sendMessage);
+    document.getElementById('user-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    
+
+    async function sendMessage() {
+        const input = document.getElementById('user-input');
+        const message = input.value.trim();
+        if (!message) return;
+
+        // Agregar mensaje del usuario
+        addMessage('user', message);
+        input.value = '';
+
+        // Mostrar "escribiendo..."
+        const typingId = addMessage('bot', '...', true);
+
+        // Obtener respuesta (simulada o real)
+        try {
+            const response = await getBotResponse(message);
+            updateMessage(typingId, response);
+        } catch (error) {
+            updateMessage(typingId, "Ocurrió un error al procesar tu pregunta.");
+            console.error('Error:', error);
+        }
+    }
+
+    function addMessage(sender, text, isTyping = false) {
+        const messages = document.getElementById('chatbot-messages');
+
+        // Clonar plantilla según el tipo de mensaje
+        const templateId = sender === 'user' ? 'user-message-template' : 'bot-message-template';
+        const messageDiv = document.getElementById(templateId).cloneNode(true);
+
+        messageDiv.id = isTyping ? 'typing-' + Date.now() : '';
+        messageDiv.classList.remove('hidden');
+        messageDiv.querySelector('p').textContent = text;
+        messages.appendChild(messageDiv);
+
+        // Scroll al final
+        messages.scrollTop = messages.scrollHeight;
+        return messageDiv.id;
+    }
+
+    function updateMessage(id, newText) {
+        const messageDiv = document.getElementById(id);
+        if (messageDiv) {
+            messageDiv.querySelector('p').textContent = newText;
+            const messages = document.getElementById('chatbot-messages');
+            messages.scrollTop = messages.scrollHeight;
+        }
+    }
+
+    // Lógica de respuestas (puedes reemplazar con llamada a tu backend)
+    async function getBotResponse(message) {
+        // Simular demora de red
+        await new Promise(resolve => setTimeout(resolve, 800));
+
+        const lowerMsg = message.toLowerCase();
+
+        // Palabras clave para Mathematical Rhythm
+        const responses = {
+            'buzón': 'Puedes acceder a tu buzón desde el menú principal. Allí encontrarás notificaciones sobre nuevos lanzamientos, conexiones y eventos.',
+            'notificaciones': 'Tus notificaciones están en el buzón. Te avisamos sobre nuevos lanzamientos de artistas que sigues, eventos y más.',
+            'ayuda': 'El centro de ayuda tiene guías sobre cuenta, suscripciones, reproducción y problemas técnicos. ¿Qué necesitas saber exactamente?',
+            'premium': 'La suscripción premium ofrece: audio de alta calidad, sin anuncios, descargas offline y acceso exclusivo. ¿Quieres más información?',
+            'suscripciones': 'Puedes gestionar tu suscripción en Configuración > Suscripción. Allí puedes actualizar o cancelar tu plan premium.',
+            'música': '¿Buscas música específica? Usa la barra de búsqueda superior o explora nuestras listas recomendadas.',
+            'artista': 'Puedes buscar artistas con la barra de búsqueda. Si sigues a un artista, te notificaremos sobre sus nuevos lanzamientos.',
+            'evento': 'Los eventos aparecen en tu buzón cuando artistas que sigues tienen conciertos cerca. También puedes buscarlos en "Eventos".',
+            'lista': 'Puedes crear listas de reproducción en "Mi biblioteca". También puedes seguir listas creadas por otros usuarios.',
+            'descargar': 'Las descargas están disponibles para usuarios premium. Ve a cualquier canción o álbum y busca el ícono de descarga.',
+            'perfil': 'Configura tu perfil en "Mi cuenta". Puedes cambiar tu foto, nombre y preferencias musicales.',
+            'problema': 'Para problemas técnicos, revisa el centro de ayuda o contáctanos directamente desde la sección "Contáctanos".'
+        };
+
+        // Buscar coincidencia de palabras clave
+        for (const [keyword, response] of Object.entries(responses)) {
+            if (lowerMsg.includes(keyword)) {
+                return response;
+            }
+        }
+
+        // Respuesta por defecto
+        return "¿Podrías ser más específico? Puedo ayudarte con: buzón, suscripciones, música, artistas, eventos y más.";
+    }
+</script>

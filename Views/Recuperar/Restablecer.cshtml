@@ -1,0 +1,325 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Restablecer Contraseña | Dentalara";
+}
+
+<style>
+    .reset-container {
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 2rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .reset-card {
+        background: #ffffff;
+        border-radius: 6px;
+        padding: 2.5rem;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e0e7f5;
+    }
+
+    .reset-title {
+        color: #1e3a8a;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.8rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .form-label {
+        display: block;
+        color: #374151;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 0.85rem;
+        border: 1px solid #d1d5db;
+        border-radius: 4px;
+        margin-bottom: 0.8rem;
+        font-size: 0.95rem;
+        background-color: #f9fafb;
+        transition: border-color 0.15s ease;
+    }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+
+    .form-hint {
+        color: #6b7280;
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+        display: block;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    .btn-reset {
+        background: #2563eb;
+        color: white;
+        width: 100%;
+        padding: 0.85rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition: background 0.15s ease;
+        text-transform: uppercase;
+    }
+
+        .btn-reset:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-reset:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+    .alert-error {
+        padding: 0.85rem;
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fee2e2;
+    }
+
+    .password-strength {
+        height: 4px;
+        background: #e5e7eb;
+        border-radius: 2px;
+        margin-bottom: 1.2rem;
+        overflow: hidden;
+    }
+
+    .strength-meter {
+        height: 100%;
+        width: 0%;
+        transition: all 0.3s ease;
+    }
+
+    .password-match {
+        font-size: 0.85rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+        display: none;
+        text-align: center;
+        padding: 0.3rem 0;
+    }
+
+    .match-success {
+        color: #059669;
+        background-color: #ecfdf5;
+        border-radius: 4px;
+    }
+
+    .match-error {
+        color: #b91c1c;
+        background-color: #fef2f2;
+        border-radius: 4px;
+    }
+
+    .dental-icon {
+        text-align: center;
+        margin-bottom: 1.2rem;
+        color: #1e3a8a;
+        font-size: 2.2rem;
+    }
+
+    .password-rules {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+        padding-left: 1rem;
+    }
+
+        .password-rules li {
+            margin-bottom: 0.3rem;
+            list-style-type: none;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+            .password-rules li:before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #3b82f6;
+            }
+</style>
+
+<div class="reset-container">
+    <div class="reset-card">
+        <div class="dental-icon">
+            <i class="fas fa-lock-alt"></i> <!-- Icono de candado -->
+        </div>
+        <h1 class="reset-title">Restablecer Contraseña</h1>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert-error">@ViewBag.Error</div>
+        }
+
+        <form id="resetPasswordForm" method="post" asp-action="Restablecer" asp-controller="Restablecer">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="token" value="@ViewBag.Token" />
+
+            <div class="form-group">
+                <label class="form-label">Nueva Contraseña</label>
+                <input type="password" name="nuevaContrasena" class="form-input"
+                       required minlength="6" id="newPassword" placeholder="Ingrese su nueva contraseña">
+                <div class="password-strength">
+                    <div class="strength-meter" id="strengthMeter"></div>
+                </div>
+
+                <ul class="password-rules">
+                    <li>Mínimo 6 caracteres</li>
+                    <li>Recomendado usar mayúsculas y números</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirmar Contraseña</label>
+                <input type="password" name="confirmarContrasena" class="form-input"
+                       required minlength="6" id="confirmPassword" placeholder="Confirme su nueva contraseña">
+                <div class="password-match" id="passwordMatch"></div>
+            </div>
+
+            <button type="submit" class="btn-reset" id="submitButton" disabled>
+                <span id="buttonText">Restablecer Contraseña</span>
+                <span id="buttonSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const newPassword = document.getElementById('newPassword');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const passwordMatch = document.getElementById('passwordMatch');
+            const submitButton = document.getElementById('submitButton');
+            const strengthMeter = document.getElementById('strengthMeter');
+            const buttonText = document.getElementById('buttonText');
+            const buttonSpinner = document.getElementById('buttonSpinner');
+
+            function updatePasswordStrength() {
+                const strength = calculatePasswordStrength(newPassword.value);
+                strengthMeter.style.width = `${strength * 25}%`;
+
+                if (strength < 2) {
+                    strengthMeter.style.backgroundColor = '#ef4444'; // Rojo
+                } else if (strength < 4) {
+                    strengthMeter.style.backgroundColor = '#f59e0b'; // Amarillo
+                } else {
+                    strengthMeter.style.backgroundColor = '#10b981'; // Verde
+                }
+            }
+
+            function calculatePasswordStrength(password) {
+                let strength = 0;
+                if (password.length >= 6) strength++;
+                if (password.length >= 8) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/\d/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                return strength;
+            }
+
+            function validatePasswords() {
+                const isLengthValid = newPassword.value.length >= 6;
+                const doPasswordsMatch = newPassword.value === confirmPassword.value;
+
+                submitButton.disabled = !(isLengthValid && doPasswordsMatch);
+
+                if (newPassword.value && confirmPassword.value) {
+                    passwordMatch.style.display = 'block';
+                    if (doPasswordsMatch) {
+                        passwordMatch.textContent = 'Las contraseñas coinciden';
+                        passwordMatch.className = 'password-match match-success';
+                    } else {
+                        passwordMatch.textContent = 'Las contraseñas no coinciden';
+                        passwordMatch.className = 'password-match match-error';
+                    }
+                } else {
+                    passwordMatch.style.display = 'none';
+                }
+            }
+
+            newPassword.addEventListener('input', function() {
+                updatePasswordStrength();
+                validatePasswords();
+            });
+
+            confirmPassword.addEventListener('input', validatePasswords);
+
+            // Form submission
+            document.getElementById("resetPasswordForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const newPass = newPassword.value;
+                const confirmPass = confirmPassword.value;
+
+                if (newPass !== confirmPass) {
+                    alert("Las contraseñas no coinciden");
+                    return;
+                }
+
+                submitButton.disabled = true;
+                buttonText.textContent = "Procesando...";
+                buttonSpinner.style.display = "inline-block";
+
+                const formData = new FormData();
+                formData.append('nuevaContrasena', newPass);
+                formData.append('confirmarContrasena', confirmPass);
+                formData.append('__RequestVerificationToken',
+                    document.querySelector('input[name="__RequestVerificationToken"]').value);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw err; });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.redirectUrl) {
+                        window.location.href = data.redirectUrl;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert(error.message || "Error al procesar la solicitud");
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    buttonText.textContent = "Restablecer Contraseña";
+                    buttonSpinner.style.display = "none";
+                });
+            });
+        });
+    </script>
+}

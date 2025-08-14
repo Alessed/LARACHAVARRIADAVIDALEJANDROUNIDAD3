@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Nueva Contraseña";
+}
+
+<h2>Restablecer contraseña</h2>
+
+<form asp-controller="Recuperar" asp-action="GuardarNuevaContrasena" method="post">
+    <input type="hidden" name="Token" value="@ViewBag.Token" />
+    <label>Nueva contraseña:</label>
+    <input type="password" name="Contrasena" required class="form-control" />
+    <br />
+    <button type="submit" class="btn btn-primary">Actualizar contraseña</button>
+</form>

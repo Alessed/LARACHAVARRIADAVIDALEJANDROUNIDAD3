@@ -1,0 +1,201 @@
+﻿@{
+    ViewData["Title"] = "Agendar Cita | Dental Center";
+}
+
+<div class="min-h-screen bg-gray-50 text-gray-800 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <!-- Encabezado -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-light tracking-wide sm:text-4xl mb-4 text-blue-600">
+                Agendar Cita Dental
+            </h1>
+            <p class="max-w-xl mx-auto text-base text-gray-600">
+                Completa el formulario para reservar tu cita. Nos pondremos en contacto para confirmar la disponibilidad.
+            </p>
+        </div>
+
+        <!-- Contenedor del formulario -->
+        <div class="bg-white rounded-xl shadow-sm p-6 sm:p-8">
+            <form class="space-y-6">
+                <!-- Información del paciente -->
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre *</label>
+                            <input type="text" id="nombre" name="nombre" required
+                                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                   placeholder="Nombre completo">
+                        </div>
+                        <div>
+                            <label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required
+                                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                   placeholder="Número de contacto">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico *</label>
+                            <input type="email" id="email" name="email" required
+                                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                   placeholder="tu@email.com">
+                        </div>
+                        <div>
+                            <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700 mb-1">Fecha de nacimiento</label>
+                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+                                   class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400">
+                        </div>
+                    </div>
+
+                    <!-- Información de la cita -->
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="text-lg font-medium text-blue-600 mb-4">Información de la cita</h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fecha_cita" class="block text-sm font-medium text-gray-700 mb-1">Fecha deseada *</label>
+                                <input type="date" id="fecha_cita" name="fecha_cita" required
+                                       class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400">
+                            </div>
+                            <div>
+                                <label for="hora_cita" class="block text-sm font-medium text-gray-700 mb-1">Hora preferida *</label>
+                                <select id="hora_cita" name="hora_cita" required
+                                        class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="" disabled selected>Selecciona una hora</option>
+                                    <option value="08:00">8:00 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label for="dentista" class="block text-sm font-medium text-gray-700 mb-1">Dentista preferido</label>
+                                <select id="dentista" name="dentista"
+                                        class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="" selected>Cualquier dentista disponible</option>
+                                    <option value="1">Dra. María Rodríguez</option>
+                                    <option value="2">Dr. Carlos Méndez</option>
+                                    <option value="3">Dra. Laura Sánchez</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="tratamiento" class="block text-sm font-medium text-gray-700 mb-1">Tipo de consulta *</label>
+                                <select id="tratamiento" name="tratamiento" required
+                                        class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="" disabled selected>Selecciona un tratamiento</option>
+                                    <option value="consulta">Consulta general</option>
+                                    <option value="limpieza">Limpieza dental</option>
+                                    <option value="ortodoncia">Ortodoncia</option>
+                                    <option value="blanqueamiento">Blanqueamiento</option>
+                                    <option value="extraccion">Extracción</option>
+                                    <option value="implante">Implante dental</option>
+                                    <option value="emergencia">Emergencia dental</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label for="notas" class="block text-sm font-medium text-gray-700 mb-1">Notas adicionales</label>
+                            <textarea id="notas" name="notas" rows="3"
+                                      class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                      placeholder="Describe brevemente el motivo de tu consulta..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Seguro dental -->
+                    <div class="border-t border-gray-200 pt-6">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="seguro" name="seguro" type="checkbox"
+                                       class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="seguro" class="font-medium text-gray-700">Tengo seguro dental</label>
+                                <p class="text-gray-500">Marca esta casilla si deseas usar tu seguro dental</p>
+                            </div>
+                        </div>
+
+                        <div id="seguro-info" class="hidden mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="aseguradora" class="block text-sm font-medium text-gray-700 mb-1">Compañía de seguros</label>
+                                <input type="text" id="aseguradora" name="aseguradora"
+                                       class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                       placeholder="Nombre de la aseguradora">
+                            </div>
+                            <div>
+                                <label for="numero_poliza" class="block text-sm font-medium text-gray-700 mb-1">Número de póliza</label>
+                                <input type="text" id="numero_poliza" name="numero_poliza"
+                                       class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                       placeholder="Número de póliza">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón de enviar -->
+                <div class="pt-2">
+                    <button type="submit"
+                            class="w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Solicitar Cita
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <div class="p-4 bg-white rounded-lg shadow-sm">
+                <div class="mx-auto flex items-center justify-center h-10 w-10 rounded-full bg-blue-100 text-blue-600 mb-2">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Teléfono</h3>
+                <p class="text-sm text-gray-700">(555) 123-4567</p>
+            </div>
+
+            <div class="p-4 bg-white rounded-lg shadow-sm">
+                <div class="mx-auto flex items-center justify-center h-10 w-10 rounded-full bg-blue-100 text-blue-600 mb-2">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Dirección</h3>
+                <p class="text-sm text-gray-700">Av. Dental 456, Consultorio 302</p>
+            </div>
+
+            <div class="p-4 bg-white rounded-lg shadow-sm">
+                <div class="mx-auto flex items-center justify-center h-10 w-10 rounded-full bg-blue-100 text-blue-600 mb-2">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Horario</h3>
+                <p class="text-sm text-gray-700">Lun-Vie: 8AM - 6PM</p>
+                <p class="text-sm text-gray-700">Sáb: 9AM - 1PM</p>
+            </div>
+        </div>
+
+        <!-- Pie de página -->
+        <div class="mt-12 text-center text-xs text-gray-400">
+            <p>Dental Center © @DateTime.Now.Year - Todos los derechos reservados</p>
+        </div>
+    </div>
+</div>
+
+<!-- Script para mostrar/ocultar información de seguro -->
+<script>
+    document.getElementById('seguro').addEventListener('change', function() {
+        const seguroInfo = document.getElementById('seguro-info');
+        if (this.checked) {
+            seguroInfo.classList.remove('hidden');
+        } else {
+            seguroInfo.classList.add('hidden');
+        }
+    });
+</script>
